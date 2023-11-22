@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>预定页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://ts1.cn.mm.bing.net/th/id/R-C.641ee6b96ff5ee268a0aaeeb287ba984?rik=zrZJ5%2fA5eR9G7w&riu=http%3a%2f%2fimg.sj33.cn%2fuploads%2fallimg%2f201009%2f20100903151200128.jpg&ehk=prQSRYCqbYhjdjIrem8SUriy%2bB%2bUEnGGexoI%2fRZ4kuA%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        h2{
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="/submit_booking" method="post">
+        <h2>预定房间</h2>
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" required>
+        <label for="phone">电话号码：</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="roomType">房间类型：</label>
+
+        <select id="roomType" name="roomType">
+            <option value="single">单人间</option>
+            <option value="double">双人间</option>
+            <option value="suite">套房</option>
+            <option value="villa">全栋别墅</option>
+        </select>
+
+        <label for="date">预定时间：</label>
+        <input type="date" id="date" name="date">
+
+        <button type="submit">提交预定</button>
+    </form>
+</body>
+</html>

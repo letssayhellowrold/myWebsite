@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <!--    引入格式文件-->
+    <!-- <link rel="stylesheet" href="html&css.css"> -->
+</head>
+<body>
+<style>
+    *{/* *{}表示选择所有元素，即接下来是统一设置*/
+        margin: 0px;/*所有的外边距为0*/
+        padding: 0px;/*所有的内边距为0*/
+        box-sizing: border-box;/*规定两个并排的带边框的框*/
+    }
+    body{
+        background: url("https://img.yitianyishu.com/super/20200605/6f207f3ce26e4134ac7685d22df0aa73")no-repeat center;
+        padding-top: 25px;
+    }
+    /*设置框框的边缘*/
+    .rg_layout{/* . 是类选择器，会将所有属于这个类的元素按以下的css语法渲染*/
+        width: 900px;
+        height: 500px;
+        border: 8px solid #EEEEEE;/*solid 定义为实线，颜色为浅灰色*/
+        background-color: white;
+        opacity: 0.9;
+        margin: auto;
+    }
+    .rg_left{
+        float: left;/*设置浮动，该类定义元素会自动浮动到父容器左侧*/
+        margin: 15px;/*设置外边距，即上下左右*/
+    }
+    .rg_left>p:first-child/*这里的 >p 表示选择rg_left这个类的<p>元素，即段落内容，first-child表示要选取的是第一个<p>*/
+    {
+        color: #FFD026;/*黄色*/
+        font-size: 20px;
+    }
+    .rg_left>p:last-child{/*与上面同理，这次选择的是最后一个。:last-child 选择器匹配的是其父元素的最后一个子元素。*/
+        color: #A6A6A6;/*灰色*/
+        font-size: 20px;
+    }
+
+    .rg_center{
+        float: left;
+    }
+
+    .rg_right{
+        float: right;
+        margin: 15px;
+        padding-left: 50px;
+    }
+    .rg_right p{/*这里的空格p表示选择了rg_right的所有<p>子元素*/
+        font-size: 15px;
+    }
+    .rg_right p a{/*空格a与上面同理，选择了所有段落中的所有的连接元素，并设置为珊瑚色*/
+        color: coral;
+    }
+    .td_left{
+        width: 100px;
+        text-align: right;/*文本元素对齐方式：向右*/
+        height: 45px;
+    }
+    .td_right{
+        padding-left: 50px;
+    }
+    /*#是id选择器，会选择所有以该id为名的元素*/
+    #username,#password,#email,#name,#tel,#birthday,#checkcode{
+        width: 251px;
+        height: 32px;
+        border: 1px solid #A6A6A6;
+        /*设置边框圆角*/
+        border-radius: 5px;
+        padding-left: 10px;
+    }
+    #checkcode{
+        width: 110px;
+    }
+    #img_check{
+        height: 32px;
+        vertical-align: middle;/*设置图片的位置垂直居中*/
+    }
+    #btn_sub{
+        width: 100px;
+        height: 40px;
+        background-color: #FFD026;/*浅黄色*/
+        border: 1px solid #FFD026;
+        padding-left: 10px;
+    }
+        .code
+    {
+         font-family:Arial;
+         font-style:italic;
+         color:blue;
+         font-size:30px;
+         border:0;
+         padding:2px 3px;
+         letter-spacing:3px;
+         font-weight:bolder;            
+         float:left;           
+         cursor:pointer;
+         width:150px;
+         height:50px;
+         line-height:60px;
+         text-align:center;
+         vertical-align:middle;
+         background-color:#D8B7E3;
+     }
+     span {
+        text-decoration:none;
+        font-size:12px;
+        color:#288bc4;
+        padding-left:10px;
+    }
+
+    span:hover {
+        text-decoration:underline;
+        cursor:pointer;
+    }
+</style>
+<script>
+    //页面加载时，生成随机验证码
+    window.onload=function(){
+     createCode(4);    
+    }
+
+    //生成验证码的方法
+    function createCode(length) {
+        var code = "";
+        var codeLength = parseInt(length); //验证码的长度
+        var checkCode = document.getElementById("checkCode");
+        ////所有候选组成验证码的字符，当然也可以用中文的
+        var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); 
+        //循环组成验证码的字符串
+        for (var i = 0; i < codeLength; i++)
+        {
+            //获取随机验证码下标
+            var charNum = Math.floor(Math.random() * 62);
+            //组合成指定字符验证码
+            code += codeChars[charNum];
+        }
+        if (checkCode)
+        {
+            //为验证码区域添加样式名
+            checkCode.className = "code";
+            //将生成验证码赋值到显示区
+            checkCode.innerHTML = code;
+        }
+    }
+    
+    //检查验证码是否正确
+    function validateCode()
+    {
+        //获取显示区生成的验证码
+        var checkCode = document.getElementById("checkCode").innerHTML;
+        //获取输入的验证码
+        var inputCode = document.getElementById("inputCode").value;
+        console.log(checkCode);
+        console.log(inputCode);
+        if (inputCode.length <= 0)
+        {
+            alert("请输入验证码！");
+        }
+        else if (inputCode.toUpperCase() != checkCode.toUpperCase())
+        {
+            alert("验证码输入有误！");
+            createCode(4);
+        }
+        else
+        {
+            alert("验证码正确！");
+        }       
+    }    
+</script>
+<div class="rg_layout">
+    <div class="rg_left">
+        <p>新用户注册</p>
+        <p>USER REGISTER</p>
+    </div>
+    <div class="rg_center">
+        <div>
+            <form action="/workspace/HTMLProject/successfulregister.html" method="post">
+                <table>
+                    <tr><!--label 标签的作用是当点击文字也会跳到文本输出框-->
+                        <!--for属性与ID属性对应规定 label 绑定到哪个表单元素。-->
+                        <td class="td_left"><label for="username">用户名</label> </td>
+                        <td class="td_right"><input type="text" name="username" id="username"> </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="password">密码</label> </td>
+                        <td class="td_right"><input type="password" name="password" id="password"> </td>
+                    </tr>
+                    <tr><!--label 标签的作用是当点击文字也会跳到文本输出框-->
+                        <td class="td_left"><label for="email">email</label> </td>
+                        <td class="td_right"><input type="email" name="email" id="email"> </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="name">姓名</label> </td>
+                        <td class="td_right"><input type="text" name="name" id="name"> </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="tel">手机号</label> </td>
+                        <td class="td_right"><input type="text" name="tel" id="tel"> </td>
+                    </tr>
+                <table>
+                    <tr>
+                        <td class="td_left" style="margin-right: 50px;"><label for="checkcode">验证码</label></td>
+                        <td class="td_left"><input type="text" name="username" id="checkcode" style="margin-left: 50px;"></td>
+                        <td class="td_right">
+                            <div id="checkCode" class="code" onclick="createCode(4)"></div>
+                            <span onclick="createCode(4)">看不清换一张</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="center">
+                            <input type="submit" onclick="validateCode()" value="注册" id="btn_sub">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div class="rg_right">
+        <p>已有账号？<a href="../html/登录界面.html">立即登录</a></p>
+    </div>
+</div>
+</body>
+</html>
